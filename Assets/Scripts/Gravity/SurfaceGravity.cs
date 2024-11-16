@@ -28,7 +28,6 @@ public class SurfaceGravity : MonoBehaviour
         boxCollider.center = Vector3.zero;
         if (surfaceFloor == surfaceFloor.Top || surfaceFloor == surfaceFloor.Bottom)
         {
-
             boxCollider.size = new Vector3(0.15f, 1, 1);
         }
         else
