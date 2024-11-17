@@ -18,10 +18,7 @@ public class SurfaceGravity : MonoBehaviour
     [SerializeField] Vector3 surfaceArea = new Vector3(1, 1, 1);
     [SerializeField] Vector3 gravityDirection = Vector3.down;
     BoxCollider boxCollider;
-    public float GetGravity()
-    {
-        return gravity;
-    }
+    PlayerController2 playerController2;
     private void Start()
     {
         boxCollider = GetComponent<BoxCollider>();
@@ -54,14 +51,19 @@ public class SurfaceGravity : MonoBehaviour
         }
         else if (surfaceFloor == surfaceFloor.Top)
         {
-            gravityDirection = new Vector3(-1, 0, 0);
+            gravityDirection = new Vector3(1, 0, 0);
         }
         else if (surfaceFloor == surfaceFloor.Bottom)
         {
-            gravityDirection = new Vector3(1, 0, 0);
+            gravityDirection = new Vector3(-1, 0, 0);
         }
 
     }
+    public Vector3 GetGravityDirection()
+    {
+        return gravityDirection;
+    }
+
     private void OnDrawGizmos()
     {
         if (surfaceFloor == surfaceFloor.Front)
@@ -99,6 +101,11 @@ public class SurfaceGravity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerController2 playerController = other.GetComponent<PlayerController2>();
+            if (playerController != null)
+            {
+                playerController.SetCurrentSurface(this, true);
+            }
             GravitySphere gravitySphere = FindObjectOfType<GravitySphere>();
             gravitySphere?.SetPlayerInsideSurfaceGravity(true);
         }
@@ -112,10 +119,6 @@ public class SurfaceGravity : MonoBehaviour
             {
                 Vector3 gravityForce = gravity * gravityDirection.normalized;
                 rb.AddForce(gravityForce, ForceMode.Acceleration);
-
-                Transform playerTransform = other.transform;
-                Quaternion targetRotation = Quaternion.LookRotation(transform.forward, transform.up);
-                playerTransform.rotation = Quaternion.Slerp(playerTransform.rotation, targetRotation, Time.deltaTime);
             }
         }
     }
@@ -123,6 +126,11 @@ public class SurfaceGravity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerController2 playerController = other.GetComponent<PlayerController2>();
+            if (playerController != null)
+            {
+                playerController.SetCurrentSurface(this, false);
+            }
             GravitySphere gravitySphere = FindObjectOfType<GravitySphere>();
             gravitySphere?.SetPlayerInsideSurfaceGravity(false);
             Debug.Log($"Player exited {surfaceFloor} area");
