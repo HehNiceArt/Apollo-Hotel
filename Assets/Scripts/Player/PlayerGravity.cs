@@ -4,7 +4,6 @@ using UnityEngine;
 public class PlayerGravity : MonoBehaviour
 {
     [SerializeField] float surfaceDetectionBuffer = 0.1f;
-
     public SurfaceGravity currentSurface;
     bool isInSurfaceArea;
     float lastSurfaceChangeTime;
@@ -15,7 +14,7 @@ public class PlayerGravity : MonoBehaviour
     {
         rb = GetComponentInChildren<Rigidbody>();
         rb.useGravity = false;
-        rb.freezeRotation = false;
+        rb.freezeRotation = true;
         lastSurfaceChangeTime = -surfaceDetectionBuffer;
         currentUp = Vector3.up;
     }
@@ -40,10 +39,16 @@ public class PlayerGravity : MonoBehaviour
             lastSurfaceChangeTime = Time.time;
         }
     }
-
     public SurfaceGravity GetCurrentSurface()
     {
         return currentSurface;
     }
-
+    void UpdateOrientation()
+    {
+        if (currentSurface != null)
+        {
+            Vector3 gravityDirection = currentSurface.GetGravityDirection();
+            transform.rotation = Quaternion.FromToRotation(-gravityDirection, gravityDirection) * Quaternion.Euler(0, transform.eulerAngles.y, 0);
+        }
+    }
 }

@@ -6,7 +6,6 @@ public class PlayerController2 : MonoBehaviour
     [SerializeField] float jumpForce = 10f;
     [SerializeField] float jumpHeight = 10f;
     [SerializeField] float rotationSpeed = 30f;
-
     [SerializeField] float horizontalRotationSpeed = 100f;
     [SerializeField] SurfaceGravity currentSurface;
     PlayerGravity playerGravity;
@@ -16,12 +15,15 @@ public class PlayerController2 : MonoBehaviour
     Rigidbody rb;
     public bool isInSurfaceArea;
     public GameObject parent;
+    Quaternion targetRotation;
+    Quaternion currentRotation;
     private void Start()
     {
         rb = GetComponentInParent<Rigidbody>();
         rb.useGravity = false;
         rb.freezeRotation = true;
         playerGravity = GetComponentInParent<PlayerGravity>();
+        targetRotation = transform.rotation;
     }
 
     private void Update()
@@ -45,8 +47,7 @@ public class PlayerController2 : MonoBehaviour
         if (horizontalInput != 0)
         {
             Vector3 rotationAxis = -currentSurface.GetGravityDirection();
-            Quaternion deltaRotation = Quaternion.AngleAxis(horizontalInput * horizontalRotationSpeed * Time.deltaTime, rotationAxis);
-            transform.Rotate(rotationAxis, horizontalInput * horizontalRotationSpeed * Time.deltaTime);
+            transform.Rotate(rotationAxis, -horizontalInput * horizontalRotationSpeed * Time.deltaTime);
         }
     }
     void HandleJumpInput()
@@ -99,7 +100,7 @@ public class PlayerController2 : MonoBehaviour
             }
             Quaternion targetRotation = Quaternion.LookRotation(forwardDir, -gravityDir);
             //transform.rotation = Quaternion.Slerp(transform.rotation, targetRotation, rotationSpeed * Time.deltaTime);
-            transform.rotation = targetRotation * transform.rotation;
+            transform.rotation = targetRotation;
         }
     }
 
