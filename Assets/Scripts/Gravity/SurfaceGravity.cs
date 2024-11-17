@@ -99,10 +99,12 @@ public class SurfaceGravity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
-            PlayerController2 playerController = other.GetComponent<PlayerController2>();
-            if (playerController != null)
+            PlayerGravity playerGravity = other.GetComponentInParent<PlayerGravity>();
+            if (playerGravity != null)
             {
-                playerController.SetCurrentSurface(this, true);
+                playerGravity.SetCurrentSurface(this, true);
+                PlayerController2 playerController = other.GetComponent<PlayerController2>();
+                playerController.UpdatePlayerOrientation();
             }
             GravitySphere gravitySphere = FindObjectOfType<GravitySphere>();
             gravitySphere?.SetPlayerInsideSurfaceGravity(true);
@@ -113,8 +115,11 @@ public class SurfaceGravity : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             Rigidbody rb = other.GetComponent<Rigidbody>();
+            PlayerController2 playerController = other.GetComponent<PlayerController2>();
             if (rb != null)
             {
+                playerController.isInSurfaceArea = true;
+                playerController.UpdatePlayerOrientation();
                 Vector3 gravityForce = gravity * gravityDirection.normalized;
                 rb.AddForce(gravityForce, ForceMode.Acceleration);
             }
@@ -125,16 +130,19 @@ public class SurfaceGravity : MonoBehaviour
     {
         if (other.CompareTag("Player"))
         {
+            PlayerGravity playerGravity = other.GetComponentInParent<PlayerGravity>();
             PlayerController2 playerController = other.GetComponent<PlayerController2>();
-            if (playerController != null)
+            if (playerGravity != null)
             {
-                if (playerController.GetCurrentSurface() == this)
+                if (playerGravity.GetCurrentSurface() == this)
                 {
-                    playerController.SetCurrentSurface(this, false);
+                    playerGravity.SetCurrentSurface(this, false);
                 }
+                playerController.isInSurfaceArea = false;
                 GravitySphere gravitySphere = FindObjectOfType<GravitySphere>();
+
                 gravitySphere?.SetPlayerInsideSurfaceGravity(false);
-                Debug.Log($"Player exited {surfaceFloor} area");
+                playerController.UpdatePlayerOrientation();
             }
         }
     }
