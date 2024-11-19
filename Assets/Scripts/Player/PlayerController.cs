@@ -24,12 +24,20 @@ public class PlayerController : MonoBehaviour
     }
     private void FixedUpdate()
     {
-        float rotationAmount = horizontalInput * moveSpeed * Time.fixedDeltaTime;
-        transform.Rotate(0, rotationAmount, 0);
+        if (horizontalInput != 0 && isGrounded)
+        {
+            float rotationAmount = horizontalInput * moveSpeed * Time.fixedDeltaTime;
+            transform.Rotate(0, rotationAmount, 0);
+        }
+        else if (horizontalInput == 0)
+        {
+            transform.Rotate(0, 0, 0);
+        }
     }
     void Jump()
     {
         isGrounded = false;
+        horizontalInput = 0;
         Vector3 gravityUp = (transform.position - attractor.transform.position).normalized;
         Vector3 jumpDirection = gravityUp * jumpHeight + transform.forward * jumpForce;
         rb.velocity = jumpDirection;

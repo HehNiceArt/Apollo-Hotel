@@ -17,7 +17,7 @@ public class PlayerOrientation : MonoBehaviour
         if (Physics.Raycast(transform.position, down, out hit, 10))
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
-            rb.rotation = Quaternion.Lerp(rb.rotation, targetRotation, Time.deltaTime * 10);
+            rb.rotation = Quaternion.Lerp(rb.rotation, targetRotation, 10);
         }
     }
 }
