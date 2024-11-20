@@ -8,6 +8,7 @@ public class GravityBody : MonoBehaviour
     {
         rb = GetComponentInChildren<Rigidbody>();
         rb.useGravity = false;
+        attractor = FindAnyObjectByType<GravityAttractor>();
     }
     private void Update()
     {
