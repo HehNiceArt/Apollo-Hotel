@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.0151158385, g: 0.00905603, b: 0.01408376, a: 1}
+  m_IndirectSpecularColor: {r: 0.015113503, g: 0.009046664, b: 0.014094996, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -281,7 +281,7 @@ Transform:
   m_GameObject: {fileID: 944036654}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.019990372, y: -0.011374485, z: -0.0011607467}
+  m_LocalPosition: {x: -142.6, y: -0.011374485, z: -0.0011607467}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children:
@@ -298,6 +298,8 @@ GameObject:
   m_Component:
   - component: {fileID: 1213280883}
   - component: {fileID: 1213280882}
+  - component: {fileID: 1213280884}
+  - component: {fileID: 1213280885}
   m_Layer: 0
   m_Name: GameManager
   m_TagString: Untagged
@@ -333,6 +335,37 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &1213280884
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213280881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbbbfc7fd40eb1b4e9facf539f0d19dd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelSO: {fileID: 11400000, guid: 7edc78669f0c76f4881c2184a47c39ab, type: 2}
+--- !u!114 &1213280885
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1213280881}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 20a774d8cbb7a2b4bad7aea61ab2435a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  levelGO:
+  - {fileID: 1909275344}
+  - {fileID: 1885315867}
+  - {fileID: 1808155511}
+  - {fileID: 1518346587}
+  levelSO: {fileID: 11400000, guid: 7edc78669f0c76f4881c2184a47c39ab, type: 2}
 --- !u!1 &1357036640
 GameObject:
   m_ObjectHideFlags: 0
@@ -451,6 +484,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1bfad5eb34b13dd4cb856914582c444c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  surfaceTypes: 0
   gravity: 9.81
   gravitySphereRadius: 0.7
 --- !u!1 &1518346587
@@ -468,11 +502,11 @@ GameObject:
   - component: {fileID: 1518346589}
   m_Layer: 0
   m_Name: 4thLevel
-  m_TagString: Level
+  m_TagString: 4thLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1518346588
 Transform:
   m_ObjectHideFlags: 0
@@ -622,11 +656,11 @@ GameObject:
   - component: {fileID: 1808155513}
   m_Layer: 0
   m_Name: 3rdLevel
-  m_TagString: Level
+  m_TagString: 3rdLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1808155512
 Transform:
   m_ObjectHideFlags: 0
@@ -741,11 +775,11 @@ GameObject:
   - component: {fileID: 1885315869}
   m_Layer: 0
   m_Name: 2ndLevel
-  m_TagString: Level
+  m_TagString: 2ndLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!4 &1885315868
 Transform:
   m_ObjectHideFlags: 0
@@ -860,7 +894,7 @@ GameObject:
   - component: {fileID: 1909275349}
   m_Layer: 0
   m_Name: 1stLevel
-  m_TagString: Level
+  m_TagString: 1stLevel
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -972,6 +1006,17 @@ PrefabInstance:
     serializedVersion: 3
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 1054065535840259151, guid: 85cb1443136884bef912447f9e9eaebe,
+        type: 3}
+      propertyPath: levelSO
+      value: 
+      objectReference: {fileID: 11400000, guid: 7edc78669f0c76f4881c2184a47c39ab,
+        type: 2}
+    - target: {fileID: 1054065535840259151, guid: 85cb1443136884bef912447f9e9eaebe,
+        type: 3}
+      propertyPath: checkWhichLevel
+      value: 
+      objectReference: {fileID: 1213280884}
     - target: {fileID: 2542602950942477731, guid: 85cb1443136884bef912447f9e9eaebe,
         type: 3}
       propertyPath: m_Name
@@ -980,7 +1025,7 @@ PrefabInstance:
     - target: {fileID: 7489660624723035669, guid: 85cb1443136884bef912447f9e9eaebe,
         type: 3}
       propertyPath: m_LocalPosition.x
-      value: 1.6
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 7489660624723035669, guid: 85cb1443136884bef912447f9e9eaebe,
         type: 3}

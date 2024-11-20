@@ -7,7 +7,10 @@ TagManager:
   - Objects
   - Planet
   - Ground
-  - Level
+  - 1stLevel
+  - 2ndLevel
+  - 3rdLevel
+  - 4thLevel
   layers:
   - Default
   - TransparentFX

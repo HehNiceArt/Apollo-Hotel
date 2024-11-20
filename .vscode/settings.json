@@ -56,7 +56,7 @@
         "temp/": true,
         "Temp/": true
     },
-    "dotnet.defaultSolution": "Apollo_Hotel.sln",
+    "dotnet.defaultSolution": "Apollo-Hotel.sln",
     "C_Cpp_Runner.cCompilerPath": "clang",
     "C_Cpp_Runner.cppCompilerPath": "clang++",
     "C_Cpp_Runner.debuggerPath": "lldb",
