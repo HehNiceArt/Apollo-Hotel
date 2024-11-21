@@ -19,7 +19,6 @@ public class PrizeCollide : MonoBehaviour
     {
         if (other.gameObject.CompareTag("Player"))
         {
-            Debug.Log("adww");
             level.LoadScene();
         }
     }
