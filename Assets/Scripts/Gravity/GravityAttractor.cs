@@ -26,7 +26,7 @@ public class GravityAttractor : MonoBehaviour
         }
     }
 
-    public void Attract(Transform body, Rigidbody rb, bool isJumping = false)
+    public void Attract(Rigidbody rb, bool isJumping = false, bool isStunned = false)
     {
         if (surfaceTypes == SurfaceTypes.Sphere)
         {
@@ -35,19 +35,22 @@ public class GravityAttractor : MonoBehaviour
             float attractionStrength = isJumping ? gravity * 0.5f : gravity;
             rb.AddForce(up * attractionStrength, ForceMode.Acceleration);
         }
-        else if (surfaceTypes == SurfaceTypes.Plane)
+        else if (surfaceTypes == SurfaceTypes.Plane && !isStunned)
         {
             float attractionStrength = isJumping ? gravity * 0.5f : gravity;
             Vector3 down = -transform.up;
             rb.AddForce(down * attractionStrength, ForceMode.Acceleration);
         }
     }
+    public void NegativeGravity(Rigidbody rb, bool isStunned)
+    {
 
+    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))
         {
-            Attract(other.transform, rb);
+            Attract(rb);
         }
     }
 }

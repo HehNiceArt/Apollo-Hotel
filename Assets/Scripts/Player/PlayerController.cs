@@ -1,3 +1,4 @@
+using System.Collections;
 using Unity.VisualScripting;
 using UnityEngine;
 
@@ -6,6 +7,8 @@ public class PlayerController : MonoBehaviour
     public float moveSpeed = 15;
     public float jumpForce = 10f;
     public float jumpHeight = 10f;
+    public float stunAmount = 2;
+    public bool isStunned = false;
     public bool isGrounded;
     public SurfaceTypes surfaceTypes;
     public GravityAttractor attractor;
@@ -19,17 +22,33 @@ public class PlayerController : MonoBehaviour
     void Update()
     {
         horizontalInput = Input.GetAxisRaw("Horizontal");
-        if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+        if (!isStunned)
         {
-            Jump();
+
+            if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
+            {
+                Jump();
+            }
+        }
+        if (horizontalInput == 0)
+        {
+            transform.Rotate(0, 0, 0);
         }
     }
     private void FixedUpdate()
     {
-        if (horizontalInput != 0 && isGrounded)
+        if (!isStunned && horizontalInput != 0 && isGrounded)
         {
-            float rotationAmount = horizontalInput * moveSpeed * Time.fixedDeltaTime;
-            transform.Rotate(0, rotationAmount, 0);
+            if (surfaceTypes == SurfaceTypes.Sphere)
+            {
+                float rotationAmount = horizontalInput * moveSpeed * Time.fixedDeltaTime;
+                transform.Rotate(0, rotationAmount, 0);
+            }
+            else if (surfaceTypes == SurfaceTypes.Plane)
+            {
+                float rotationAmount = horizontalInput * 2 * moveSpeed * Time.fixedDeltaTime;
+                transform.Rotate(0, rotationAmount, 0);
+            }
         }
         else if (horizontalInput == 0)
         {
@@ -51,17 +70,12 @@ public class PlayerController : MonoBehaviour
         else if (surfaceTypes == SurfaceTypes.Plane)
         {
             isGrounded = false;
-            jumpForce = 3;
+            jumpForce = 10;
             jumpHeight = 10;
             horizontalInput = 0;
             Vector3 jumpDir = Vector3.up * jumpHeight + transform.forward * jumpHeight;
             rb.AddForce(jumpDir, ForceMode.Impulse);
         }
-    }
-    public GravityAttractor ReturnGravityAttractor()
-    {
-        Debug.Log("returning");
-        return attractor;
     }
     private void OnCollisionEnter(Collision other)
     {
@@ -70,5 +84,18 @@ public class PlayerController : MonoBehaviour
             isGrounded = true;
             attractor = other.gameObject.GetComponent<GravityAttractor>();
         }
+        if (other.gameObject.CompareTag("Enemy"))
+        {
+            StartCoroutine(StunPlayer(stunAmount));
+        }
+    }
+    IEnumerator StunPlayer(float duration)
+    {
+        isGrounded = false;
+        isStunned = true;
+        attractor.NegativeGravity(rb, isStunned);
+        yield return new WaitForSeconds(duration);
+        isStunned = false;
+        attractor.NegativeGravity(rb, isStunned);
     }
 }
