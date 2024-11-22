@@ -13,6 +13,7 @@ TagManager:
   - 4thLevel
   - Enemy
   - Void
+  - LED
   layers:
   - Default
   - TransparentFX
@@ -23,7 +24,7 @@ TagManager:
   - 
   - Attractable
   - GroundSurface
-  - 
+  - LED
   - 
   - 
   - 
