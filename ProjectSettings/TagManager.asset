@@ -12,6 +12,7 @@ TagManager:
   - 3rdLevel
   - 4thLevel
   - Enemy
+  - Void
   layers:
   - Default
   - TransparentFX

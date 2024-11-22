@@ -1,5 +1,6 @@
 using System.Collections;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour
 {
@@ -20,6 +21,7 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
+        if (isStunned) return;
         horizontalInput = Input.GetAxisRaw("Horizontal");
         if (!isStunned)
         {
@@ -77,6 +79,10 @@ public class PlayerController : MonoBehaviour
         if (other.gameObject.CompareTag("Enemy"))
         {
             StartCoroutine(StunPlayer(stunAmount));
+        }
+        if (other.gameObject.CompareTag("Void"))
+        {
+            SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex, LoadSceneMode.Single);
         }
     }
     IEnumerator StunPlayer(float duration)
