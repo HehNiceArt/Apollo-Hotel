@@ -42,10 +42,6 @@ public class GravityAttractor : MonoBehaviour
             rb.AddForce(down * attractionStrength, ForceMode.Acceleration);
         }
     }
-    public void NegativeGravity(Rigidbody rb, bool isStunned)
-    {
-
-    }
     private void OnTriggerEnter(Collider other)
     {
         if (other.TryGetComponent<Rigidbody>(out Rigidbody rb))

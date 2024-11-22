@@ -1,5 +1,4 @@
 using System.Collections;
-using Unity.VisualScripting;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -24,15 +23,10 @@ public class PlayerController : MonoBehaviour
         horizontalInput = Input.GetAxisRaw("Horizontal");
         if (!isStunned)
         {
-
             if (Input.GetKeyDown(KeyCode.Space) && isGrounded)
             {
                 Jump();
             }
-        }
-        if (horizontalInput == 0)
-        {
-            transform.Rotate(0, 0, 0);
         }
     }
     private void FixedUpdate()
@@ -49,10 +43,6 @@ public class PlayerController : MonoBehaviour
                 float rotationAmount = horizontalInput * 2 * moveSpeed * Time.fixedDeltaTime;
                 transform.Rotate(0, rotationAmount, 0);
             }
-        }
-        else if (horizontalInput == 0)
-        {
-            transform.Rotate(0, 0, 0);
         }
     }
     void Jump()
@@ -93,9 +83,7 @@ public class PlayerController : MonoBehaviour
     {
         isGrounded = false;
         isStunned = true;
-        attractor.NegativeGravity(rb, isStunned);
         yield return new WaitForSeconds(duration);
         isStunned = false;
-        attractor.NegativeGravity(rb, isStunned);
     }
 }
