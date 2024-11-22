@@ -7,6 +7,13 @@ TagManager:
   - Objects
   - Planet
   - Ground
+  - 1stLevel
+  - 2ndLevel
+  - 3rdLevel
+  - 4thLevel
+  - Enemy
+  - Void
+  - LED
   layers:
   - Default
   - TransparentFX
@@ -17,7 +24,7 @@ TagManager:
   - 
   - Attractable
   - GroundSurface
-  - 
+  - LED
   - 
   - 
   - 
