@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.018879857, g: 0.01552956, b: 0.050389655, a: 1}
+  m_IndirectSpecularColor: {r: 0.016720295, g: 0.0137158325, b: 0.04464771, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -740,6 +740,7 @@ Transform:
   - {fileID: 2021086402}
   - {fileID: 2037447410}
   - {fileID: 1486967046}
+  - {fileID: 1314735527}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!4 &210858182 stripped
@@ -842,7 +843,7 @@ PrefabInstance:
     - target: {fileID: 5849550719038417633, guid: 9b905ffdc738b47a89f09b05e490f4b6,
         type: 3}
       propertyPath: m_Name
-      value: LandingGear1
+      value: Prize
       objectReference: {fileID: 0}
     - target: {fileID: 6513920086269112411, guid: 9b905ffdc738b47a89f09b05e490f4b6,
         type: 3}
@@ -4122,12 +4123,12 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1314735524}
   serializedVersion: 2
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
   m_LocalPosition: {x: -13.412304, y: 0.85, z: 13.55}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
-  m_Father: {fileID: 0}
+  m_Father: {fileID: 157392070}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &1351866749 stripped
 GameObject:
@@ -7630,7 +7631,6 @@ SceneRoots:
   - {fileID: 721079460}
   - {fileID: 157392070}
   - {fileID: 1965407821}
-  - {fileID: 519241656}
   - {fileID: 229978023}
-  - {fileID: 1314735527}
   - {fileID: 2133239197}
+  - {fileID: 519241656}

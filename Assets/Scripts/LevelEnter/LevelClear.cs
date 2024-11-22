@@ -15,7 +15,7 @@ public class LevelClear : MonoBehaviour
         {
             levelGO[1].SetActive(false);
         }
-        if (levelSO.isSecondLevel)
+        if (levelSO.isThirdLevel)
         {
             levelGO[2].SetActive(false);
         }
