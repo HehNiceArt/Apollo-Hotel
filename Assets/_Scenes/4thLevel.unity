@@ -38,7 +38,7 @@ RenderSettings:
   m_ReflectionIntensity: 1
   m_CustomReflection: {fileID: 0}
   m_Sun: {fileID: 0}
-  m_IndirectSpecularColor: {r: 0.02369936, g: 0.059103012, b: 0.038971495, a: 1}
+  m_IndirectSpecularColor: {r: 0.023591867, g: 0.05883673, b: 0.038795896, a: 1}
   m_UseRadianceAmbientProbe: 0
 --- !u!157 &3
 LightmapSettings:
@@ -356,6 +356,7 @@ GameObject:
   - component: {fileID: 41005378}
   - component: {fileID: 41005380}
   - component: {fileID: 41005379}
+  - component: {fileID: 41005381}
   m_Layer: 0
   m_Name: LEVELMANAGER
   m_TagString: Untagged
@@ -415,11 +416,22 @@ MonoBehaviour:
   - {fileID: 3970197297895852635, guid: 65acb63846e2c9a429906aa8e2ecdd54, type: 3}
   - {fileID: 7982461429950082874, guid: 3af3788489468634ca8551e4f49d373f, type: 3}
   - {fileID: 3658920609045190322, guid: cd4ca976dbf626549971e19d7ef53367, type: 3}
-  - {fileID: 3746901468632373317, guid: e2fa05d22ec876745aec3dd263e3622f, type: 3}
   - {fileID: 5638865034277454350, guid: c3380a4e196a52e4cbb5fde0345af968, type: 3}
   numberOfSpawns: 60
   range: 12
   enemyParent: {fileID: 688073273}
+--- !u!114 &41005381
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 41005377}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 99a296ab005c29f4ab2f7771df98e6bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &45563199
 PrefabInstance:
   m_ObjectHideFlags: 0
