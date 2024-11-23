@@ -17,16 +17,6 @@ public class Level : MonoBehaviour
         if (!string.IsNullOrEmpty(levelScene))
         {
             loadLevel.LoadNextLevel(levelScene);
-            //StartCoroutine(LoadSceneAsync(levelScene));
-        }
-    }
-    IEnumerator LoadSceneAsync(string sceneName)
-    {
-        AsyncOperation asyncLoad = SceneManager.LoadSceneAsync(sceneName, LoadSceneMode.Single);
-
-        while (!asyncLoad.isDone)
-        {
-            yield return null;
         }
     }
 }

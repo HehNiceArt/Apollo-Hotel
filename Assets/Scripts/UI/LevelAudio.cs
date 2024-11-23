@@ -9,11 +9,6 @@ public class LevelAudio : MonoBehaviour
     {
         audioManager = FindAnyObjectByType<AudioManager>();
     }
-
-    void Update()
-    {
-
-    }
     public void AudioA()
     {
         audioManager.SetMusicVolume();
