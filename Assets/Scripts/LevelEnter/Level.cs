@@ -6,12 +6,18 @@ using UnityEngine.SceneManagement;
 public class Level : MonoBehaviour
 {
     [SerializeField] String levelScene;
+    [SerializeField] LoadLevel loadLevel;
 
+    private void Start()
+    {
+        loadLevel = FindAnyObjectByType<LoadLevel>();
+    }
     public void LoadScene()
     {
         if (!string.IsNullOrEmpty(levelScene))
         {
-            StartCoroutine(LoadSceneAsync(levelScene));
+            loadLevel.LoadNextLevel(levelScene);
+            //StartCoroutine(LoadSceneAsync(levelScene));
         }
     }
     IEnumerator LoadSceneAsync(string sceneName)
