@@ -2,21 +2,21 @@ using UnityEngine;
 
 public class PlayerPersistence : MonoBehaviour
 {
-    public static PlayerPersistence Instance { get; private set; }
+    private static PlayerPersistence instance;
+    public static PlayerPersistence Instance { get { return instance; } }
     const string PlayerPositionKey = "PlayerPosition";
     [SerializeField] Vector3 spawnPoint;
 
     private void Awake()
     {
-        if (Instance != this && Instance != null)
+        if (instance != null && instance != this)
         {
-            Destroy(this);
+            Destroy(this.gameObject);
         }
         else
         {
-            Instance = this;
+            instance = this;
         }
-
     }
     private void Start()
     {
