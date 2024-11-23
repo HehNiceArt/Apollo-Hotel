@@ -13,7 +13,7 @@ public class PlayerOrientation : MonoBehaviour
     {
         RaycastHit hit;
         Vector3 down = -transform.up;
-        if (Physics.Raycast(transform.position, down, out hit, 10) && playerController.isGrounded)
+        if (Physics.Raycast(transform.position, down, out hit, 10))
         {
             Quaternion targetRotation = Quaternion.FromToRotation(transform.up, hit.normal) * transform.rotation;
             rb.rotation = Quaternion.Lerp(rb.rotation, targetRotation, 10);

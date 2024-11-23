@@ -2,9 +2,22 @@ using UnityEngine;
 
 public class PlayerPersistence : MonoBehaviour
 {
+    public static PlayerPersistence Instance { get; private set; }
     const string PlayerPositionKey = "PlayerPosition";
     [SerializeField] Vector3 spawnPoint;
 
+    private void Awake()
+    {
+        if (Instance != this && Instance != null)
+        {
+            Destroy(this);
+        }
+        else
+        {
+            Instance = this;
+        }
+
+    }
     private void Start()
     {
         LoadPlayerPosition();

@@ -52,8 +52,8 @@ public class PlayerController : MonoBehaviour
         if (surfaceTypes == SurfaceTypes.Sphere)
         {
             isGrounded = false;
-            jumpForce = 10;
-            jumpHeight = 20;
+            jumpForce = 5;
+            jumpHeight = 10;
             horizontalInput = 0;
             Vector3 gravityUp = (transform.position - attractor.transform.position).normalized;
             Vector3 jumpDirection = gravityUp * jumpHeight + transform.forward * jumpForce;
@@ -62,8 +62,8 @@ public class PlayerController : MonoBehaviour
         else if (surfaceTypes == SurfaceTypes.Plane)
         {
             isGrounded = false;
-            jumpForce = 10;
-            jumpHeight = 10;
+            jumpForce = 3;
+            jumpHeight = 5;
             horizontalInput = 0;
             Vector3 jumpDir = Vector3.up * jumpHeight + transform.forward * jumpHeight;
             rb.AddForce(jumpDir, ForceMode.Impulse);
